@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "3dedfb8d-e529-471a-bebc-109afcd9cc79",
+		"name": "JSBLOG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "jsonblog.com",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://jsonblob.com/api/jsonBlob",
+					"protocol": "https",
+					"host": [
+						"jsonblob",
+						"com"
+					],
+					"path": [
+						"api",
+						"jsonBlob"
+					]
+				},
+				"description": "https://jsonblob.com/api/jsonBlob"
+			},
+			"response": []
+		},
+		{
+			"name": "create post/extract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My First Blog Post :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonblob.com/api/jsonBlob",
+					"protocol": "https",
+					"host": [
+						"jsonblob",
+						"com"
+					],
+					"path": [
+						"api",
+						"jsonBlob"
+					]
+				},
+				"description": "https://jsonblob.com/api/jsonBlob"
+			},
+			"response": []
+		},
+		{
+			"name": "create blog post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9921b32f-03a1-4493-9792-bee41222db44",
+						"exec": [
+							"var bloglink =  pm.response.to.have.header(\"Location\")\r",
+							"pm.environment.set(\"bloglink\", pm.response.headers.get('Location'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My First Blog Post :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsURL}}/api/jsonBlob",
+					"host": [
+						"{{jsURL}}"
+					],
+					"path": [
+						"api",
+						"jsonBlob"
+					]
+				},
+				"description": "{{jsURL}}/api/jsonBlob"
+			},
+			"response": []
+		},
+		{
+			"name": "Get blog post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1b9cf68e-0565-494f-9711-24bc761af9d1",
+						"exec": [
+							"pm.variables.get(\"My First Blog Post :\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My First Blog Post :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{bloglink}}",
+					"host": [
+						"{{bloglink}}"
+					]
+				},
+				"description": "{{bloglink}}"
+			},
+			"response": []
+		},
+		{
+			"name": "get blog post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3ea4b59-e817-4082-9479-75213c22de68",
+						"exec": [
+							"pm.test(\"status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My First Blog Post :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsURL}}",
+					"host": [
+						"{{jsURL}}"
+					]
+				},
+				"description": "{{jsURL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "GET BLOG POST....",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "221b68d6-3f70-43f9-a693-9889879afe20",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"/assets/css/bootstrap/bootstrap.min.css\");\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My First Blog Post :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsURL}}",
+					"host": [
+						"{{jsURL}}"
+					]
+				},
+				"description": "{{jsURL}}"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
